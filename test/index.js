@@ -205,7 +205,7 @@ describe('Nightmare', function () {
       .goto('about:blank')
       .click('a.not-here')
       .catch(function (error) {
-        error.should.include('a.not-here');
+        error.message.should.include('a.not-here');
         done();
       });
   });
@@ -217,7 +217,7 @@ describe('Nightmare', function () {
       .goto('about:blank')
       .mousedown('a.not-here')
       .catch(function (error) {
-        error.should.include('a.not-here');
+        error.message.should.include('a.not-here');
         done();
       });
   });
@@ -229,7 +229,7 @@ describe('Nightmare', function () {
       .goto('about:blank')
       .mouseup('a.not-here')
       .catch(function (error) {
-        error.should.include('a.not-here');
+        error.message.should.include('a.not-here');
         done();
       });
   });
@@ -241,7 +241,7 @@ describe('Nightmare', function () {
       .goto('about:blank')
       .mouseover('a.not-here')
       .catch(function (error) {
-        error.should.include('a.not-here');
+        error.message.should.include('a.not-here');
         done();
       });
   });
@@ -267,11 +267,11 @@ describe('Nightmare', function () {
       data.should.contain.keys('url', 'code', 'method', 'referrer', 'headers');
     });
 
-    it('should reject with a useful message when no URL', function() {
+    it ('should reject with a useful message when no URL', function() {
       return nightmare.goto(undefined).then(
         function() {throw new Error('goto(undefined) didn’t cause an error');},
         function(error) {
-          error.should.include('url');
+          error.message.should.include('url');
         }
       );
     });
@@ -280,7 +280,7 @@ describe('Nightmare', function () {
       return nightmare.goto('').then(
         function() {throw new Error('goto(undefined) didn’t cause an error');},
         function(error) {
-          error.should.include('url');
+          error.message.should.include('url');
         }
       );
     });
